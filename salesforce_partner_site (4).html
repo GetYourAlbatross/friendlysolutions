@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudSync Solutions - Premier Salesforce Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            padding: 100px 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,100 600,50 T1200,50 L1200,0 L0,0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+            color: white;
+            padding: 80px 2rem 60px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0070d2;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            padding: 60px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #0070d2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #0070d2;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-detail {
+            background: #f4f6f9;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+        }
+
+        .service-detail h3 {
+            color: #0070d2;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-detail ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-detail li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .service-detail li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0070d2;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f4f6f9 0%, #e8ecf1 100%);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #0070d2;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .cert-badge {
+            background: linear-gradient(135deg, #f4f6f9 0%, #e8ecf1 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .cert-badge:hover {
+            border-color: #0070d2;
+            transform: scale(1.05);
+        }
+
+        .cert-badge h4 {
+            color: #0070d2;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .badge-icon {
+            font-size: 4rem;
+            color: #00a1e0;
+        }
+
+        .expertise-detail {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .expertise-detail h3 {
+            color: #0070d2;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cloud-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cloud-item {
+            background: #f4f6f9;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .cloud-item h4 {
+            color: #0070d2;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .industry-section {
+            margin-bottom: 4rem;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .industry-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .industry-card h3 {
+            color: #0070d2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h2 {
+            color: #0070d2;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f4f6f9;
+            border-radius: 10px;
+        }
+
+        .info-item h4 {
+            color: #0070d2;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-form h2 {
+            color: #0070d2;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0070d2;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: #0070d2;
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,112,210,0.3);
+        }
+
+        footer {
+            background: #032d60;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1, .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" onclick="showPage('home')">☁️ CloudSync Solutions</div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('services')">Services</a></li>
+                <li><a onclick="showPage('expertise')">Expertise</a></li>
+                <li><a onclick="showPage('industries')">Industries</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Trusted Salesforce Partner</h1>
+                <p>Transforming businesses through innovative Salesforce solutions. We deliver excellence, drive growth, and maximize your CRM investment.</p>
+                <button class="cta-button" onclick="showPage('contact')">Get Started Today</button>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Why Choose CloudSync?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Proven Track Record</h3>
+                    <p>Over 500 successful implementations across diverse industries with 98% client satisfaction rate.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3>Expert Team</h3>
+                    <p>50+ certified Salesforce professionals with deep technical and business expertise.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Innovation First</h3>
+                    <p>Leveraging the latest Salesforce technologies and best practices to drive business outcomes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <h2 class="section-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Successful Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Certified Consultants</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+        <div class="page-hero">
+            <h1>Our Services</h1>
+            <p>End-to-end Salesforce solutions tailored to your business needs</p>
+        </div>
+
+        <div class="content-section">
+            <div class="service-detail">
+                <h3>🚀 Salesforce Implementation</h3>
+                <p>Transform your business with expertly executed Salesforce implementations. We guide you through every step, from strategic planning to successful deployment and user adoption.</p>
+                <ul>
+                    <li>Sales Cloud implementation for streamlined sales processes</li>
+                    <li>Service Cloud deployment for exceptional customer service</li>
+                    <li>Marketing Cloud setup for personalized customer journeys</li>
+                    <li>Commerce Cloud integration for seamless e-commerce experiences</li>
+                    <li>Experience Cloud for branded digital experiences</li>
+                    <li>Complete data migration and system configuration</li>
+                    <li>User training and change management programs</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>⚙️ Custom Development & Configuration</h3>
+                <p>Extend Salesforce capabilities with custom solutions built specifically for your unique business requirements.</p>
+                <ul>
+                    <li>Custom Apex development and triggers</li>
+                    <li>Lightning Web Components (LWC) development</li>
+                    <li>Custom objects, fields, and page layouts</li>
+                    <li>Workflow automation and process builder</li>
+                    <li>Custom applications on the Salesforce platform</li>
+                    <li>Mobile app development for Salesforce</li>
+                    <li>AppExchange app development and publishing</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>🔄 System Integration</h3>
+                <p>Connect Salesforce with your existing technology stack for a unified view of your business data.</p>
+                <ul>
+                    <li>ERP system integration (SAP, Oracle, Microsoft Dynamics)</li>
+                    <li>Marketing automation platform connections</li>
+                    <li>E-commerce platform integrations</li>
+                    <li>Custom API development and middleware solutions</li>
+                    <li>Real-time data synchronization</li>
+                    <li>Third-party application integrations</li>
+                    <li>Legacy system modernization and migration</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>📊 Analytics & Business Intelligence</h3>
+                <p>Transform data into actionable insights with powerful analytics and AI-driven intelligence.</p>
+                <ul>
+                    <li>Tableau CRM (Einstein Analytics) implementation</li>
+                    <li>Custom dashboard and report development</li>
+                    <li>Einstein AI and predictive analytics</li>
+                    <li>Data visualization and storytelling</li>
+                    <li>KPI tracking and performance monitoring</li>
+                    <li>Advanced reporting solutions</li>
+                    <li>Data warehouse integration</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>🎓 Training & Enablement</h3>
+                <p>Empower your team with comprehensive training programs designed to maximize Salesforce adoption and proficiency.</p>
+                <ul>
+                    <li>End-user training programs</li>
+                    <li>Administrator certification training</li>
+                    <li>Developer training and best practices</li>
+                    <li>Custom training materials and documentation</li>
+                    <li>On-site and virtual training sessions</li>
+                    <li>Train-the-trainer programs</li>
+                    <li>Ongoing enablement and support</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>🔧 Managed Services & Support</h3>
+                <p>Ensure continuous optimization and peak performance with our dedicated managed services team.</p>
+                <ul>
+                    <li>24/7 technical support and troubleshooting</li>
+                    <li>Ongoing system maintenance and updates</li>
+                    <li>Performance optimization and health checks</li>
+                    <li>Release management and upgrade support</li>
+                    <li>Strategic roadmap planning and consultation</li>
+                    <li>Dedicated success manager</li>
+                    <li>Proactive monitoring and issue resolution</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPERTISE PAGE -->
+    <div id="expertise" class="page">
+        <div class="page-hero">
+            <h1>Our Expertise</h1>
+            <p>Deep Salesforce knowledge across all clouds and industries</p>
+        </div>
+
+        <div class="content-section">
+            <div class="expertise-detail">
+                <h3>Salesforce Cloud Expertise</h3>
+                <p>Our certified consultants bring extensive experience across the entire Salesforce ecosystem.</p>
+                <div class="cloud-grid">
+                    <div class="cloud-item">
+                        <div class="service-icon">📈</div>
+                        <h4>Sales Cloud</h4>
+                        <p>Lead management, opportunity tracking, sales forecasting</p>
+                    </div>
+                    <div class="cloud-item">
+                        <div class="service-icon">💬</div>
+                        <h4>Service Cloud</h4>
+                        <p>Case management, omnichannel support, field service</p>
+                    </div>
+                    <div class="cloud-item">
+                        <div class="service-icon">📧</div>
+                        <h4>Marketing Cloud</h4>
+                        <p>Journey builder, email studio, social media marketing</p>
+                    </div>
+                    <div class="cloud-item">
+                        <div class="service-icon">🛒</div>
+                        <h4>Commerce Cloud</h4>
+                        <p>B2C and B2B commerce solutions</p>
+                    </div>
+                    <div class="cloud-item">
+                        <div class="service-icon">🌐</div>
+                        <h4>Experience Cloud</h4>
+                        <p>Customer portals, partner communities</p>
+                    </div>
+                    <div class="cloud-item">
+                        <div class="service-icon">📊</div>
+                        <h4>Tableau CRM</h4>
+                        <p>Advanced analytics and AI insights</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Certifications & Accolades</h2>
+            <div class="cert-grid">
+                <div class="cert-badge">
+                    <div class="badge-icon">🏆</div>
+                    <h4>Salesforce Consulting Partner</h4>
+                    <p>Recognized for excellence in consulting services and customer success</p>
+                </div>
+                <div class="cert-badge">
+                    <div class="badge-icon">⭐</div>
+                    <h4>Multiple Cloud Expertise</h4>
+                    <p>Certified across Sales, Service, Marketing, Commerce & Experience Clouds</p>
+                </div>
+                <div class="cert-badge">
+                    <div class="badge-icon">🎯</div>
+                    <h4>Industry Solutions Expert</h4>
+                    <p>Specialized certifications in Financial Services, Healthcare & more</p>
+                </div>
+                <div class="cert-badge">
+                    <div class="badge-icon">💡</div>
+                    <h4>AppExchange Partner</h4>
+                    <p>Published applications on the Salesforce AppExchange</p>
+                </div>
+                <div class="cert-badge">
+                    <div class="badge-icon">🔧</div>
+                    <h4>Technical Architects</h4>
+                    <p>Certified Technical Architects and Solution Architects on staff</p>
+                </div>
+                <div class="cert-badge">
+                    <div class="badge-icon">📚</div>
+                    <h4>Continuous Learning</h4>
+                    <p>Team maintains 200+ active Salesforce certifications</p>
+                </div>
+            </div>
+
+            <div class="expertise-detail">
+                <h3>Technical Capabilities</h3>
+                <p>Our development team possesses deep technical expertise in:</p>
+                <ul>
+                    <li>Apex programming and best practices</li>
+                    <li>Lightning Web Components (LWC) and Aura framework</li>
+                    <li>Visualforce page development</li>
+                    <li>SOQL and SOSL query optimization</li>
+                    <li>REST and SOAP API integrations</li>
+                    <li>Heroku and platform architecture</li>
+                    <li>DevOps and CI/CD pipeline implementation</li>
+                    <li>Security and data governance</li>
+                    <li>Performance optimization and scalability</li>
+                    <li>Mobile development for Salesforce</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- INDUSTRIES PAGE -->
+    <div id="industries" class="page">
+        <div class="page-hero">
+            <h1>Industries We Serve</h1>
+            <p>Specialized Salesforce solutions across diverse sectors</p>
+        </div>
+
+        <div class="content-section">
+            <div class="industry-section">
+                <h2 class="section-title">Our Industry Focus</h2>
+                <div class="industry-grid">
+                    <div class="industry-card">
+                        <div class="industry-icon">🏦</div>
+                        <h3>Financial Services</h3>
+                        <p>Wealth management, banking, insurance solutions with Financial Services Cloud. Compliance-ready implementations with enhanced security and regulatory features.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Client relationship management</li>
+                            <li>• Wealth advisory platforms</li>
+                            <li>• Compliance and risk management</li>
+                            <li>• Insurance policy management</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🏥</div>
+                        <h3>Healthcare & Life Sciences</h3>
+                        <p>Patient engagement, care coordination, and provider management with Health Cloud. HIPAA-compliant solutions for healthcare organizations.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Patient 360-degree view</li>
+                            <li>• Care plan management</li>
+                            <li>• Clinical trial management</li>
+                            <li>• Provider network optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🛍️</div>
+                        <h3>Retail & E-commerce</h3>
+                        <p>Omnichannel retail experiences, inventory management, and customer loyalty programs. Seamless integration of online and offline channels.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Unified commerce platforms</li>
+                            <li>• Personalized shopping experiences</li>
+                            <li>• Loyalty program management</li>
+                            <li>• Order and inventory management</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🏭</div>
+                        <h3>Manufacturing</h3>
+                        <p>Supply chain optimization, dealer management, and connected products with Manufacturing Cloud. End-to-end visibility and control.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Sales agreement management</li>
+                            <li>• Channel partner management</li>
+                            <li>• Service and warranty tracking</li>
+                            <li>• Supply chain visibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">💻</div>
+                        <h3>Technology & Software</h3>
+                        <p>SaaS business management, subscription billing, and customer success platforms. Scalable solutions for high-growth tech companies.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Subscription management</li>
+                            <li>• Customer success tracking</li>
+                            <li>• Partner ecosystem management</li>
+                            <li>• Usage analytics and insights</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">❤️</div>
+                        <h3>Non-Profit</h3>
+                        <p>Donor management, grant tracking, and program management with Nonprofit Cloud. Purpose-built solutions for mission-driven organizations.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Donor and fundraising management</li>
+                            <li>• Volunteer coordination</li>
+                            <li>• Program and grant tracking</li>
+                            <li>• Impact measurement</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🎓</div>
+                        <h3>Education</h3>
+                        <p>Student recruitment, alumni engagement, and institutional advancement with Education Cloud. Complete student lifecycle management.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Student recruitment and admissions</li>
+                            <li>• Alumni and donor relations</li>
+                            <li>• Student success tracking</li>
+                            <li>• Institutional advancement</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🏠</div>
+                        <h3>Real Estate</h3>
+                        <p>Property management, client relationship tracking, and transaction management. Streamlined processes for agents, brokers, and developers.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Property listing management</li>
+                            <li>• Client and lead tracking</li>
+                            <li>• Transaction coordination</li>
+                            <li>• Commission tracking</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🎬</div>
+                        <h3>Media & Entertainment</h3>
+                        <p>Content distribution, subscriber management, and advertising operations. Digital transformation for media companies.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Subscriber lifecycle management</li>
+                            <li>• Content rights management</li>
+                            <li>• Advertising campaign tracking</li>
+                            <li>• Audience analytics</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">⚖️</div>
+                        <h3>Professional Services</h3>
+                        <p>Project management, resource allocation, and client billing. Optimized operations for consulting and service firms.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Project and resource management</li>
+                            <li>• Time and expense tracking</li>
+                            <li>• Client engagement management</li>
+                            <li>• Billing and revenue recognition</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">⚡</div>
+                        <h3>Energy & Utilities</h3>
+                        <p>Customer service optimization, field service management, and regulatory compliance. Smart solutions for energy providers.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Customer service and billing</li>
+                            <li>• Field service optimization</li>
+                            <li>• Asset management</li>
+                            <li>• Regulatory compliance</li>
+                        </ul>
+                    </div>
+
+                    <div class="industry-card">
+                        <div class="industry-icon">🚗</div>
+                        <h3>Automotive</h3>
+                        <p>Dealer management, customer service, and connected vehicle experiences. Digital transformation for automotive companies.</p>
+                        <ul style="margin-top: 1rem; list-style: none;">
+                            <li>• Dealer and distributor management</li>
+                            <li>• Service appointment scheduling</li>
+                            <li>• Warranty management</li>
+                            <li>• Connected vehicle services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="page-hero">
+            <h1>Let's Start Your Salesforce Journey</h1>
+            <p>Get in touch with our experts to discuss your business needs</p>
+        </div>
+
+        <div class="content-section">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p style="margin-bottom: 2rem;">Ready to transform your business with Salesforce? Our team of experts is here to help you succeed. Reach out to us and let's discuss how we can drive your digital transformation.</p>
+
+                    <div class="info-item">
+                        <h4>📍 Office Location</h4>
+                        <p>123 Innovation Drive<br>
+                        San Francisco, CA 94105<br>
+                        United States</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>📞 Phone</h4>
+                        <p>Main: 1-800-SF-CLOUD<br>
+                        Support: 1-800-SUPPORT<br>
+                        Sales: 1-800-SALES-01</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>📧 Email</h4>
+                        <p>General: contact@cloudsync-solutions.com<br>
+                        Sales: sales@cloudsync-solutions.com<br>
+                        Support: support@cloudsync-solutions.com</p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>🕐 Business Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 6:00 PM PST<br>
+                        Saturday: 9:00 AM - 2:00 PM PST<br>
+                        Sunday: Closed<br>
+                        <em>24/7 Support for Managed Services Clients</em></p>
+                    </div>
+
+                    <div class="info-item">
+                        <h4>🌐 Connect With Us</h4>
+                        <p>LinkedIn | Twitter | YouTube | Blog</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company *</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="industry">Industry</label>
+                            <select id="industry" name="industry">
+                                <option value="">Select an industry</option>
+                                <option value="financial">Financial Services</option>
+                                <option value="healthcare">Healthcare & Life Sciences</option>
+                                <option value="retail">Retail & E-commerce</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="technology">Technology & Software</option>
+                                <option value="nonprofit">Non-Profit</option>
+                                <option value="education">Education</option>
+                                <option value="realestate">Real Estate</option>
+                                <option value="media">Media & Entertainment</option>
+                                <option value="professional">Professional Services</option>
+                                <option value="energy">Energy & Utilities</option>
+                                <option value="automotive">Automotive</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Interest</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="implementation">Salesforce Implementation</option>
+                                <option value="customization">Custom Development</option>
+                                <option value="integration">System Integration</option>
+                                <option value="analytics">Analytics & BI</option>
+                                <option value="training">Training & Enablement</option>
+                                <option value="managed">Managed Services</option>
+                                <option value="consultation">General Consultation</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your project or questions..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" required style="width: auto; margin-right: 0.5rem;">
+                                I agree to receive communications from CloudSync Solutions
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <div style="margin-top: 5rem; padding: 3rem; background: #f4f6f9; border-radius: 10px; text-align: center;">
+                <h2 style="color: #0070d2; margin-bottom: 1.5rem;">Schedule a Free Consultation</h2>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">Not sure where to start? Book a free 30-minute consultation with one of our Salesforce experts. We'll discuss your business challenges and explore how Salesforce can help you achieve your goals.</p>
+                <button class="cta-button" onclick="alert('Consultation booking system would be integrated here!')">Book Your Free Consultation</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a onclick="showPage('home')">Home</a>
+                <a onclick="showPage('services')">Services</a>
+                <a onclick="showPage('expertise')">Expertise</a>
+                <a onclick="showPage('industries')">Industries</a>
+                <a onclick="showPage('contact')">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 CloudSync Solutions. All rights reserved. | Premier Salesforce Consulting Partner</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">📧 contact@cloudsync-solutions.com | 📞 1-800-SF-CLOUD</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">San Francisco | New York | London | Sydney</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageName) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageName).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your interest! Our team will contact you within 24 hours.');
+            event.target.reset();
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.service-card, .cert-badge, .industry-card, .cloud-item').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
