@@ -1064,47 +1064,7 @@
             <p style="margin-top: 0.5rem; opacity: 0.7; font-size: 0.9rem;">San Francisco | New York | London | Sydney</p>
         </div>
     </footer>
-
-    <script>
-        function showPage(pageName) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageName).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for your interest! Our team will contact you within 24 hours.');
-            event.target.reset();
-        }
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.service-card, .cert-badge, .industry-card, .cloud-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
+<script src="main.js"></script>
+    
 </body>
 </html>
