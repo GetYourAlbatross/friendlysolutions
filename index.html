@@ -963,7 +963,8 @@
 
                 <div class="contact-form">
                     <h2>Send Us a Message</h2>
-                    <form onsubmit="handleSubmit(event)">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                      <input type="hidden" name="access_key" value="4b616aa6-0ca5-4a38-b962-15b55d24887d">
                         <div class="form-group">
                             <label for="firstName">First Name *</label>
                             <input type="text" id="firstName" name="firstName" required>
