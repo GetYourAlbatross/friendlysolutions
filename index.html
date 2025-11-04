@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CloudSync Solutions - Premier Salesforce Partner</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      header {
+        background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+        color: white;
+        padding: 150px 2rem 100px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,100 600,50 T1200,50 L1200,0 L0,0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+        background-size: cover;
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease 0.2s both;
+      }
+
+      .cta-button {
+        background: white;
+        color: #0070d2;
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeInUp 1s ease 0.4s both;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      section {
+        padding: 80px 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #0070d2;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #0070d2;
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .stats {
+        background: linear-gradient(135deg, #f4f6f9 0%, #e8ecf1 100%);
+        text-align: center;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+      }
+
+      .stat-item h3 {
+        font-size: 3rem;
+        color: #0070d2;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-item p {
+        font-size: 1.1rem;
+        color: #666;
+      }
+
+      .certifications {
+        background: white;
+      }
+
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .cert-badge {
+        background: linear-gradient(135deg, #f4f6f9 0%, #e8ecf1 100%);
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: border-color 0.3s, transform 0.3s;
+      }
+
+      .cert-badge:hover {
+        border-color: #0070d2;
+        transform: scale(1.05);
+      }
+
+      .cert-badge h4 {
+        color: #0070d2;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .badge-icon {
+        font-size: 4rem;
+        color: #00a1e0;
+      }
+
+      .industries {
+        background: linear-gradient(135deg, #f4f6f9 0%, #e8ecf1 100%);
+      }
+
+      .industry-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .industry-tag {
+        background: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 500;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .industry-tag:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .contact {
+        background: linear-gradient(135deg, #00a1e0 0%, #0070d2 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .submit-btn {
+        background: white;
+        color: #0070d2;
+        padding: 1rem 3rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      footer {
+        background: #032d60;
+        color: white;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .nav-links {
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">☁️ CloudSync Solutions</div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#expertise">Expertise</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Your Trusted Salesforce Partner</h1>
+        <p>
+          Transforming businesses through innovative Salesforce solutions. We
+          deliver excellence, drive growth, and maximize your CRM investment.
+        </p>
+        <button
+          class="cta-button"
+          onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+        >
+          Get Started Today
+        </button>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🚀</div>
+          <h3>Implementation</h3>
+          <p>
+            Full-scale Salesforce implementation tailored to your business
+            needs. From Sales Cloud to Service Cloud, we ensure seamless
+            deployment and user adoption.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Customization</h3>
+          <p>
+            Custom development and configuration to match your unique business
+            processes. Apex, Lightning Web Components, and integrations built to
+            perfection.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3>Integration</h3>
+          <p>
+            Connect Salesforce with your existing systems. API development,
+            middleware solutions, and data synchronization for a unified
+            technology ecosystem.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Analytics & AI</h3>
+          <p>
+            Unlock insights with Tableau, Einstein Analytics, and custom
+            dashboards. Make data-driven decisions that propel your business
+            forward.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎓</div>
+          <h3>Training & Support</h3>
+          <p>
+            Comprehensive training programs and ongoing support. We ensure your
+            team maximizes Salesforce capabilities and achieves continuous
+            improvement.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Managed Services</h3>
+          <p>
+            Ongoing optimization, maintenance, and strategic guidance. We act as
+            an extension of your team, providing dedicated Salesforce expertise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <h2 class="section-title">Our Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Successful Projects</p>
+        </div>
+        <div class="stat-item">
+          <h3>98%</h3>
+          <p>Client Satisfaction</p>
+        </div>
+        <div class="stat-item">
+          <h3>50+</h3>
+          <p>Certified Consultants</p>
+        </div>
+        <div class="stat-item">
+          <h3>15+</h3>
+          <p>Years Experience</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertise" class="certifications">
+      <h2 class="section-title">Certifications & Expertise</h2>
+      <div class="cert-grid">
+        <div class="cert-badge">
+          <div class="badge-icon">🏆</div>
+          <h4>Salesforce Consulting Partner</h4>
+          <p>Recognized for excellence in consulting services</p>
+        </div>
+        <div class="cert-badge">
+          <div class="badge-icon">⭐</div>
+          <h4>Cloud Expertise</h4>
+          <p>Sales, Service, Marketing, Commerce & Experience Cloud</p>
+        </div>
+        <div class="cert-badge">
+          <div class="badge-icon">🎯</div>
+          <h4>Industry Solutions</h4>
+          <p>Financial Services, Healthcare, Manufacturing & More</p>
+        </div>
+        <div class="cert-badge">
+          <div class="badge-icon">💡</div>
+          <h4>Innovation Partners</h4>
+          <p>AppExchange partners with custom solutions</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="industries" class="industries">
+      <h2 class="section-title">Industries We Serve</h2>
+      <div class="industry-list">
+        <span class="industry-tag">Financial Services</span>
+        <span class="industry-tag">Healthcare</span>
+        <span class="industry-tag">Retail & E-commerce</span>
+        <span class="industry-tag">Manufacturing</span>
+        <span class="industry-tag">Technology</span>
+        <span class="industry-tag">Non-Profit</span>
+        <span class="industry-tag">Education</span>
+        <span class="industry-tag">Real Estate</span>
+        <span class="industry-tag">Media & Entertainment</span>
+        <span class="industry-tag">Professional Services</span>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title" style="color: white">
+        Let's Transform Your Business
+      </h2>
+      <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem">
+        Ready to unlock the full potential of Salesforce? Get in touch with our
+        experts today.
+      </p>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#industries">Industries</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <p>
+          &copy; 2025 CloudSync Solutions. All rights reserved. | Premier
+          Salesforce Consulting Partner
+        </p>
+        <p style="margin-top: 1rem; opacity: 0.8">
+          📧 contact@cloudsync-solutions.com | 📞 1-800-SF-CLOUD
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+        alert(
+          "Thank you for your interest! Our team will contact you within 24 hours."
+        );
+        event.target.reset();
+      }
+
+      // Smooth scroll animation for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll(".service-card, .cert-badge, .industry-tag")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(20px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>
