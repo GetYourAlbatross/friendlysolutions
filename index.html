@@ -964,71 +964,34 @@
 
                 <div class="contact-form">
                     <h2>Send Us a Message</h2>
-                    <form action="https://api.web3forms.com/submit" method="POST">
-                      <input type="hidden" name="access_key" value="4b616aa6-0ca5-4a38-b962-15b55d24887d">
+                    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00Dak00000crlyz" method="POST">
+                      <input type=hidden name="orgid" value="00Dak00000crlyz">
+                    <input type=hidden name="retURL" value="http://friendlysolutions.com.au">
                         <div class="form-group">
-                            <label for="firstName">First Name *</label>
-                            <input type="text" id="firstName" name="firstName" required>
+                            <label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" />
                         </div>
 
                         <div class="form-group">
-                            <label for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" name="lastName" required>
+                            <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                            <label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
                         </div>
 
                         <div class="form-group">
-                            <label for="company">Company *</label>
-                            <input type="text" id="company" name="company" required>
+                            <label for="description">Description</label><textarea name="description"></textarea><br>
                         </div>
 
                         <div class="form-group">
-                            <label for="industry">Industry</label>
-                            <select id="industry" name="industry">
-                                <option value="">Select an industry</option>
-                                <option value="financial">Financial Services</option>
-                                <option value="healthcare">Healthcare & Life Sciences</option>
-                                <option value="retail">Retail & E-commerce</option>
-                                <option value="manufacturing">Manufacturing</option>
-                                <option value="technology">Technology & Software</option>
-                                <option value="nonprofit">Non-Profit</option>
-                                <option value="education">Education</option>
-                                <option value="realestate">Real Estate</option>
-                                <option value="media">Media & Entertainment</option>
-                                <option value="professional">Professional Services</option>
-                                <option value="energy">Energy & Utilities</option>
-                                <option value="automotive">Automotive</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <input type="hidden"  id="external" name="external" value="1" /><br>
                         </div>
 
-                        <div class="form-group">
-                            <label for="service">Service Interest</label>
-                            <select id="service" name="service">
-                                <option value="">Select a service</option>
-                                <option value="implementation">Salesforce Implementation</option>
-                                <option value="customization">Custom Development</option>
-                                <option value="integration">System Integration</option>
-                                <option value="analytics">Analytics & BI</option>
-                                <option value="training">Training & Enablement</option>
-                                <option value="managed">Managed Services</option>
-                                <option value="consultation">General Consultation</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required placeholder="Tell us about your project or questions..."></textarea>
-                        </div>
+                       
 
                         <div class="form-group">
                             <label>
@@ -1038,6 +1001,7 @@
                         </div>
 
                         <button type="submit" class="submit-btn">Send Message</button>
+                        <input type="submit" name="submit">
                     </form>
                 </div>
             </div>
@@ -1049,34 +1013,7 @@
             </div>
         </div>
     </div>
-    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00Dak00000crlyz" method="POST">
-
-<input type=hidden name="orgid" value="00Dak00000crlyz">
-<input type=hidden name="retURL" value="http://friendlysolutions.com.au">
-
-<!--  ----------------------------------------------------------------------  -->
-<!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-<!--  these lines if you wish to test in debug mode.                          -->
-<!--  <input type="hidden" name="debug" value=1>                              -->
-<!--  <input type="hidden" name="debugEmail"                                  -->
-<!--  value="test.criteria@atomicmail.io">                                    -->
-<!--  ----------------------------------------------------------------------  -->
-
-<label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
-
-<label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-<label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-
-<label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
-
-<label for="description">Description</label><textarea name="description"></textarea><br>
-
-<input type="hidden"  id="external" name="external" value="1" /><br>
-
-<input type="submit" name="submit">
-
-</form>
+   
 
     <footer>
         <div class="footer-content">
